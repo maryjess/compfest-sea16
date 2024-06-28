@@ -7,6 +7,10 @@ staticfiles/
 # Ignore Python bytecode
 *.pyc
 __pycache__/
+compfest/__pycache__/
+compfest_sea16/__pycache__/
+compfest/*.pyc
+compfest_sea16/*.pyc
 
 # Ignore database
 *.sqlite3
