@@ -1,2 +1,16 @@
 # Ignoring .env/ files
 env/
+
+# Ignore compiled static files
+/staticfiles/
+
+# Ignore Python bytecode
+*.pyc
+__pycache__/
+
+# Ignore database
+*.sqlite3
+
+# Ignore IDE-specific files
+.vscode/
+.DS_Store

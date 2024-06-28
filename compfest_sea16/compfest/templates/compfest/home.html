@@ -2,6 +2,11 @@
 <html>
 <head>
   <title>SEA Salon</title>
+  {% load compress static %}
+  {% compress css %}
+    <link type="text/x-scss" href="{% static 'compfest/scss/styles.scss' %}" rel="stylesheet" media="screen">
+  {% endcompress %}
+  <!-- <link rel="stylesheet" type="text/css" href="{% static 'compfest/css/styles.css' %}"> -->
 </head>
 <body>
   <!-- TODO navbar -->
