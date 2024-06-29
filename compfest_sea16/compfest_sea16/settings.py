@@ -74,6 +74,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'compfest_sea16.wsgi.application'
 
+AUTHENTICATION_BACKENDS = [
+    'compfest.auth_backends.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
@@ -159,3 +163,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 COMPRESS_OFFLINE = True
 LIBSASS_OUTPUT_STYLE = 'compressed'
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'

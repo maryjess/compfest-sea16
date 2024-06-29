@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Review</title>
+  <title>Leave a Review</title>
+  {% load compress static %}
+  {% compress css %}
+    <link type="text/x-scss" href="{% static 'compfest/scss/styles.scss' %}" rel="stylesheet" media="screen">
+  {% endcompress %}
 </head>
 <body>
   <a href="{% url 'home' %}">Home</a>
   <a href="{% url 'book_reservation' %}">Book Reservation</a>
   <a href="{% url 'login' %}">Login</a>
   <h1>Leave Us a Review!</h1>
+  <form action="/submit_review" method="post">
+    <label for="name">Name</label><br>
+    <input type="text" id="name" name="name"><br><br>
+
+    <div class="rating">
+      <input type="radio" id="star1" name="rating" value="1">
+      <label for="star1" title="1 star">★</label>
+      <input type="radio" id="star2" name="rating" value="2">
+      <label for="star2" title="2 stars">★</label>
+      <input type="radio" id="star3" name="rating" value="3">
+      <label for="star3" title="3 stars">★</label>
+      <input type="radio" id="star4" name="rating" value="4">
+      <label for="star4" title="4 stars">★</label>
+      <input type="radio" id="star5" name="rating" value="5">
+      <label for="star5" title="5 stars">★</label>
+    </div><br><br>
+
+    <label for="comments">Comments</label><br>
+    <textarea id="comments" name="comments" rows="4" cols="50"></textarea><br><br>
+
+    <input type="submit" value="Submit">
+  </form>
 </body>
 </html>

@@ -57,7 +57,7 @@ class User(AbstractBaseUser):
     user_id = models.CharField(max_length=50)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     phone_number = PhoneNumberField()
     is_active = models.BooleanField(default=True)
 
