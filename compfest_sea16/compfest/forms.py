@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
-from .models import User, Customer
+from .models import User, Service
 
 class CustomerCreationForm(UserCreationForm):
     class Meta:
@@ -36,3 +36,9 @@ class ReservationForm(forms.Form):
     service_type = forms.ChoiceField(choices=SERVICE_CHOICES)
     date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     time = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time'}))
+
+class ServiceForm(forms.ModelForm):
+    class Meta:
+        model = Service
+        fields = ['service_type', 'duration']
+
