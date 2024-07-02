@@ -74,6 +74,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'compfest_sea16.wsgi.application'
 
+AUTH_USER_MODEL = 'compfest.User'
+
 AUTHENTICATION_BACKENDS = [
     'compfest.auth_backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.contrib import admin
-from .models import Admin, Customer, Service, Reservation, Review, Branch
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from .models import Admin, Customer, Service, Reservation, Review, Branch, User
 
 class AdminAdmin(admin.ModelAdmin):
     list_display = ('email', 'first_name', 'last_name', 'is_active')
@@ -26,6 +27,26 @@ class ReviewAdmin(admin.ModelAdmin):
 class BranchAdmin(admin.ModelAdmin):
     list_display = ('name', 'location', 'opening_time', 'closing_time')
     search_fields = ('name', 'location')
+
+@admin.register(User)
+class UserAdmin(BaseUserAdmin):
+    list_display = ('email', 'first_name', 'last_name', 'phone_number', 'is_active', 'is_admin')
+    list_filter = ('is_admin', 'is_active')
+    search_fields = ('email', 'first_name', 'last_name')
+    ordering = ('email',)
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'phone_number')}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'is_admin', 'groups', 'user_permissions')}),
+        ('Important dates', {'fields': ('last_login', 'date_joined')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'first_name', 'last_name', 'phone_number', 'password1', 'password2'),
+        }),
+    )
+    filter_horizontal = ('groups', 'user_permissions')
 
 admin.site.register(Admin, AdminAdmin)
 admin.site.register(Customer, CustomerAdmin)

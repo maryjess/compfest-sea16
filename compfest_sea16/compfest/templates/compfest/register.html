@@ -6,29 +6,18 @@
         <link type="text/x-scss" href="{% static 'compfest/scss/styles.scss' %}" rel="stylesheet" media="screen">
     {% endcompress %}
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Register Now</title>
 </head>
 <body>
-    <a href="{% url 'home' %}">Home</a>
-    <h1>Login</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <div>
-            <label for="email">Email</label><br>
-            <input id="email" name="email" type="email" required>
-        </div>
-        <div>
-            <label for="password">Password</label><br>
-            <input id="password" name="password" type="password" required>
-        </div>
-        <button type="submit">Login</button>
-    </form>
-
-    <div>
-        <p>Don't have an account?</p>
-        <a href="{% url 'register' %}">Sign Up</a>
-    </div>
-    {% if form.errors %}
+  <a href="{% url 'home' %}">Home</a>
+  <!-- TODO url for book reservation prlu ma? -->
+  <h1>Register</h1>
+  <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Register</button>
+  </form>
+  {% if form.errors %}
         <ul>
             {% for field, errors in form.errors.items %}
                 <li>{{ field }}:

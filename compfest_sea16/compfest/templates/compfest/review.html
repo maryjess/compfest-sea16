@@ -12,10 +12,14 @@
   <a href="{% url 'book_reservation' %}">Book Reservation</a>
   <a href="{% url 'login' %}">Login</a>
   <h1>Leave Us a Review!</h1>
-  <form action="/submit_review" method="post">
+  <!-- <form action="/submit_review" method="POST">   -->
+  <!-- TODO idk if action would be necessary for this -->
+  <form method="POST">
+    {% csrf_token %}
     <label for="name">Name</label><br>
-    <input type="text" id="name" name="name"><br><br>
-
+    <input type="text" id="name" name="name" required><br><br>
+    
+    <label for="rating">Rating</label><br>
     <div class="rating">
       <input type="radio" id="star1" name="rating" value="1">
       <label for="star1" title="1 star">★</label>
@@ -30,7 +34,7 @@
     </div><br><br>
 
     <label for="comments">Comments</label><br>
-    <textarea id="comments" name="comments" rows="4" cols="50"></textarea><br><br>
+    <textarea id="comments" name="comments" rows="3" cols="50"></textarea><br><br>
 
     <input type="submit" value="Submit">
   </form>
