@@ -1,5 +1,126 @@
+// form {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   width: 100%;
+//   max-width: 400px;
+// }
+
+// form {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   width: 100%; /* Full width of the form */
+//   max-width: 400px; /* Maximum width for the form */
+
+//   div {
+//     width: 100%; /* Ensure divs are full width */
+//     margin-bottom: 15px; /* Add margin between form fields */
+//   }
+
+//   label {
+//     align-self: flex-start; /* Align labels to the start of the form */
+//     margin-bottom: 5px;
+//   }
+
+//   input[type="text"],
+//   input[type="email"],
+//   input[type="password"],
+//   textarea {
+//     width: 100%; /* Full width of the input and textarea */
+//     padding: 5px; /* Add padding to input fields */
+//   }
+
+//   button {
+//     align-self: center; /* Center the submit button */
+//     padding: 10px 20px; /* Add padding to the button */
+//     background-color: #fef2f2; /* Background color of the button */
+//     border: 1px solid #000; /* Border color of the button */
+//     cursor: pointer;
+//     transition: background-color 0.3s;
+//   }
+
+//   button:hover {
+//     background-color: #e0e0e0; /* Hover effect for the button */
+//   }
+// }
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* Full width of the form */
+  max-width: 400px; /* Maximum width for the form */
+
+  div {
+    width: 100%; /* Ensure divs are full width */
+    margin-bottom: 15px; /* Add margin between form fields */
+  }
+
+  label {
+    align-self: flex-start; /* Align labels to the start of the form */
+    margin-bottom: 5px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"],
+  input[type="time"],
+  textarea,
+  select {
+    width: 100%; /* Full width of the input and textarea */
+    padding: 5px; /* Add padding to input fields */
+  }
+
+  button {
+    align-self: center; /* Center the submit button */
+    padding: 10px 20px; /* Add padding to the button */
+    background-color: #fef2f2; /* Background color of the button */
+    border: 1px solid #000; /* Border color of the button */
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #e0e0e0; /* Hover effect for the button */
+  }
+}
+
+.additional-links {
+  margin-top: 20px; /* Add margin above the additional links */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  p {
+    margin-bottom: 5px; /* Margin below the text */
+  }
+
+  a {
+    color: purple;
+    font-weight: bold;
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s;
+
+    &:hover {
+      color: #d000d0; /* Hover color */
+    }
+  }
+}
+
+.subtitle {
+  font-style: italic;
+  margin-top: 0;
+}
+
 body {
   background-color: #fef2f2;
+}
+
+h1 {
+  margin-bottom: px;
+  text-align: center;
 }
 
 .rating {
@@ -28,6 +149,40 @@ body {
 
 .navbar {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  
+  .left,
+  .right {
+      display: flex;
+      gap: 30px;
+  }
+
+  .right {
+      margin-left: auto;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Adjust the padding as needed */
+  text-align: center; /* Center-align text */
+}
+
+.rows {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
   justify-content: space-evenly;
   align-items: flex-start;
+}
+
+.subtitle {
+  font-style: italic;
+  margin-top: 0;
+  padding-top: 0;
 }

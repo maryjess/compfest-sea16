@@ -6,53 +6,58 @@
   {% compress css %}
     <link type="text/x-scss" href="{% static 'compfest/scss/styles.scss' %}" rel="stylesheet" media="screen">
   {% endcompress %}
-  <!-- <link rel="stylesheet" type="text/css" href="{% static 'compfest/css/styles.css' %}"> -->
 </head>
 <body>
-  <!-- TODO navbar -->
   <div class="navbar">
-    <a href="{% url 'review' %}">Review</a>
-    <a href="{% url 'book_reservation' %}">Book Reservation</a>
-
-    {% if user.is_authenticated %}
-      <p>Welcome, {{ user.first_name }}!</p>
-      <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-      <a href="{% url 'login' %}">Login</a>
-      <a href="{% url 'register' %}">Sign Up</a>
-    {% endif %}
-  </div>
-
-  <h1>SEA Salon</h1>
-  <p class="subtitle">Beauty and Elegance Redefined</p>
-  <!-- TODO create styling for subtitle. italic or even typewriter -->
-
-  <h1>Services</h1>
-  <div>
-    <div>
-      <!-- TODO insert icon for each card -->
-      <h2>Haircuts & Styling</h2>
+    <div class="left">
+      <a href="{% url 'review' %}">Submit a Review</a>
+      <a href="{% url 'book_reservation' %}">Book a Reservation</a>
     </div>
-    <div>
-      <h2>Manicure & Pedicure</h2>
-    </div>
-    <div>
-      <h2>Facial Treatments</h2>
+
+    <div class="right">
+      {% if user.is_authenticated %}
+        <p>Welcome, {{ user.first_name }}!</p>
+        <a href="{% url 'logout' %}">Logout</a>
+      {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Sign Up</a>
+      {% endif %}
     </div>
   </div>
+
+  <div class="content">
+
+    <h1>SEA Salon</h1>
+    <p class="subtitle">Beauty and Elegance Redefined</p>
+    <!-- TODO create styling for subtitle. like typewriter kind -->
   
-  <h1>Contact Us</h1>
-  <div>
-    <div>
-      <!-- TODO insert icon for each user -->
-      <h2>Thomas</h2>
-      <!-- TODO insert phone icon -->
-      <p>+62 812 3456 789</p>
+    <h1>Services</h1>
+    <div class="rows">
+      <div>
+        <!-- TODO insert icon for each card -->
+        <h2>Haircuts & Styling</h2>
+      </div>
+      <div>
+        <h2>Manicure & Pedicure</h2>
+      </div>
+      <div>
+        <h2>Facial Treatments</h2>
+      </div>
     </div>
-    <div>
-      <h2>Sekar</h2>
-      <p>+62 816 4829 372</p>
-    </div>
+    
+    <h1>Contact Us</h1>
+    <div class="rows">
+      <div>
+        <!-- TODO insert icon for each user -->
+        <h2>Thomas</h2>
+        <!-- TODO insert phone icon -->
+        <p>+62 812 3456 789</p>
+      </div>
+      <div>
+        <h2>Sekar</h2>
+        <p>+62 816 4829 372</p>
+      </div>
+  </div>
 
 </body>
 </html>

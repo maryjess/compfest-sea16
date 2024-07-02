@@ -2,9 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from .models import User, Customer
-# from .models import User, Review
 
-# TODO jadi pakainya myuser nih, bukan customer?
 class CustomerCreationForm(UserCreationForm):
     class Meta:
         model = User
@@ -18,25 +16,23 @@ class CustomerCreationForm(UserCreationForm):
             user.save()
         return user
 
-# class MyUserCreationForm(UserCreationForm):
-#     class Meta:
-#         model = User
-#         fields = ['first_name', 'last_name', 'email', 'phone_number', 'password']
-
 class UserForm(ModelForm):
     class Meta:
         model = User
-        # fields = ['avatar', 'name', 'username', 'email', 'bio']
+        # fields = ['avatar', 'name', 'email']
         # TODO add avatar for user
         fields = ['first_name', 'last_name', 'email']
 
-# class RoomForm(ModelForm):
-#     class Meta:
-#         model = Room
-#         fields = '__all__'
-#         exclude = ['host', 'participants']
+class ReservationForm(forms.Form):
+    SERVICE_CHOICES = [
+        ('haircuts_styling', 'Haircuts & Styling'),
+        ('manicure_pedicure', 'Manicure & Pedicure'),
+        ('facial_treatments', 'Facial Treatments')
+    ]
 
-# class ReviewForm(ModelForm):
-#     class Meta:
-#         model = Review
-#         fields = ['first']
+    first_name = forms.CharField(max_length=50)
+    last_name = forms.CharField(max_length=50)
+    phone_number = forms.CharField(max_length=15)
+    service_type = forms.ChoiceField(choices=SERVICE_CHOICES)
+    date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    time = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time'}))

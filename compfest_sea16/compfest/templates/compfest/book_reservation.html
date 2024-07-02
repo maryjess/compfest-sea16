@@ -1,12 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Book Reservation</title>
+    {% load compress static %}
+    {% compress css %}
+        <link type="text/x-scss" href="{% static 'compfest/scss/styles.scss' %}" rel="stylesheet" media="screen">
+    {% endcompress %}
+    <meta charset="UTF-8">
+    <title>Book a Reservation</title>
 </head>
 <body>
-  <a href="{% url 'home' %}">Home</a>
-  <a href="{% url 'review' %}">Review</a>
-  <a href="{% url 'login' %}">Login</a>
-  <h1>Book a Reservation With Us</h1>
+    <div class="navbar">
+        <div class="left">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'book_reservation' %}">Book Reservation</a>
+        </div>
+        <div class="right">
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Book a Reservation</h1>
+        <form method="POST" class="reservation-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Book Now</button>
+        </form>
+        {% if form.errors %}
+            <ul>
+                {% for field, errors in form.errors.items %}
+                    <li>{{ field }}:
+                        <ul>
+                            {% for error in errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
 </body>
 </html>

@@ -9,33 +9,43 @@
     <title>Register Now</title>
 </head>
 <body>
-  <a href="{% url 'home' %}">Home</a>
-  <!-- TODO url for book reservation prlu ma? -->
-  <h1>Register</h1>
-  <form method="POST">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Register</button>
-  </form>
-  {% if form.errors %}
-        <ul>
-            {% for field, errors in form.errors.items %}
-                <li>{{ field }}:
-                    <ul>
-                        {% for error in errors %}
-                            <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <div class="navbar">
+        <div class="left">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'book_reservation' %}">Book Reservation</a>
+        </div>
+        <div class="right">
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Register</h1>
+        <form method="POST" class="register-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Register</button>
+        </form>
+        {% if form.errors %}
+            <ul>
+                {% for field, errors in form.errors.items %}
+                    <li>{{ field }}:
+                        <ul>
+                            {% for error in errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
 </body>
 </html>
