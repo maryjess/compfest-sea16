@@ -20,9 +20,9 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault('is_admin', True)
 
         return self.create_user(email, password, **extra_fields)
-    
+
 class User(AbstractBaseUser, PermissionsMixin):
-    user_id = models.CharField(max_length=50, unique=True, default=uuid.uuid4, editable=False)
+    user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField(unique=True)
@@ -47,8 +47,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.is_superuser
 
 class ServiceType(models.TextChoices):
-    HAIRCUTS_STYLING = 'haircuts_styling', 'Haircut and Styling'
-    MANICURE_PEDICURE = 'manicure_pedicure', 'Manicure and Pedicure'
+    HAIRCUTS_STYLING = 'haircuts_styling', 'Haircuts & Styling'
+    MANICURE_PEDICURE = 'manicure_pedicure', 'Manicure & Pedicure'
     FACIAL = 'facial', 'Facial Treatment'
 
 class Rating(models.IntegerChoices):
@@ -68,16 +68,8 @@ class Service(models.Model):
     def __str__(self):
         return self.service_type
 
-class Customer(models.Model):
-    first_name = models.CharField(max_length=50, default='DefaultFirstName')  # Add default
-    last_name = models.CharField(max_length=50, default='DefaultLastName')  # Add default
-    phone_number = models.CharField(max_length=15)
-
-    def __str__(self):
-        return f"{self.first_name} {self.last_name}"
-
 class Reservation(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     date = models.DateField()
     time = models.TimeField()
@@ -86,10 +78,10 @@ class Reservation(models.Model):
         return f"Reservation for {self.customer} on {self.date} at {self.time}"
 
 class Review(models.Model):
-    first_name = models.CharField(max_length=50, default='DefaultFirstName')  # Add default
-    last_name = models.CharField(max_length=50, default='DefaultLastName')  # Add default
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
     rating = models.SmallIntegerField(
-        choices = Rating.choices
+        choices=Rating.choices
     )
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
